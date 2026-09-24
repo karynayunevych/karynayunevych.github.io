@@ -27,5 +27,10 @@ for f in "$TMP"/*.ttf; do
   fi
 done
 
+# Licencias (SIL Open Font License)
+for f in bebasneue oswald iosevkacharon; do
+  curl -sSLf -o "$OUT/OFL-$f.txt" "$BASE/$f/OFL.txt"
+done
+
 rm -rf "$TMP"
 ls -la "$OUT"

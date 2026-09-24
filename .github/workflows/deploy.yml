@@ -1,0 +1,70 @@
+# Compila la web con Flutter y la publica en GitHub Pages
+# cada vez que subes cambios a la rama "main".
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: # botón "Run workflow" manual en la pestaña Actions
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Descargar tipografías
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends fonttools
+          bash tool/get_fonts.sh
+
+      - name: Instalar dependencias
+        run: flutter pub get
+
+      - name: Revisar el código
+        run: flutter analyze --no-fatal-infos --no-fatal-warnings
+
+      - name: Compilar la web
+        run: |
+          # Si el repo se llama <usuario>.github.io la web vive en la raíz "/".
+          # Si no, vive en "/<nombre-del-repo>/".
+          REPO="${GITHUB_REPOSITORY#*/}"
+          OWNER="$(echo "$GITHUB_REPOSITORY_OWNER" | tr '[:upper:]' '[:lower:]')"
+          if [ "$(echo "$REPO" | tr '[:upper:]' '[:lower:]')" = "$OWNER.github.io" ]; then
+            BASE="/"
+          else
+            BASE="/$REPO/"
+          fi
+          echo "base-href: $BASE"
+          flutter build web --release --base-href "$BASE"
+          # 404 → vuelve a la web en vez de mostrar el error de GitHub
+          cp build/web/index.html build/web/404.html
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: build/web
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

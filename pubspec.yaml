@@ -1,0 +1,44 @@
+name: portfolio
+description: "Portfolio de Karyna Yunevych — una web, dos caras: código y diseño."
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.5.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  url_launcher: ^6.3.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
+flutter:
+  uses-material-design: true
+
+  fonts:
+    # Títulos (solo latín)
+    - family: BebasNeue
+      fonts:
+        - asset: assets/fonts/BebasNeue-Regular.ttf
+    # Títulos en ruso y ucraniano (Bebas Neue no tiene cirílico)
+    - family: Oswald
+      fonts:
+        - asset: assets/fonts/Oswald-Variable.ttf
+    # Texto
+    - family: IosevkaCharon
+      fonts:
+        - asset: assets/fonts/IosevkaCharon-Light.ttf
+          weight: 300
+        - asset: assets/fonts/IosevkaCharon-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/IosevkaCharon-Italic.ttf
+          weight: 400
+          style: italic
+        - asset: assets/fonts/IosevkaCharon-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/IosevkaCharon-Bold.ttf
+          weight: 700

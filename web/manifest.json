@@ -1,0 +1,14 @@
+{
+  "name": "Karyna Yunevych",
+  "short_name": "Karyna",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#2B0A12",
+  "theme_color": "#2B0A12",
+  "description": "Código y diseño. Una web, dos caras.",
+  "orientation": "any",
+  "prefer_related_applications": false,
+  "icons": [
+    { "src": "favicon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}

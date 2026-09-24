@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <!--
+    GitHub Actions cambia $FLUTTER_BASE_HREF automáticamente al compilar
+    (flutter build web --base-href ...). No lo toques.
+  -->
+  <base href="$FLUTTER_BASE_HREF">
+
+  <meta charset="UTF-8">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Karyna Yunevych — desarrolladora de software y diseñadora gráfica. Una web, dos caras.">
+  <meta name="theme-color" content="#2B0A12">
+
+  <!-- Vista previa al compartir el enlace -->
+  <meta property="og:title" content="Karyna Yunevych — Portfolio">
+  <meta property="og:description" content="Código y diseño. Una web, dos caras.">
+  <meta property="og:type" content="website">
+
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Karyna">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+
+  <title>Karyna Yunevych</title>
+  <link rel="manifest" href="manifest.json">
+
+  <style>
+    html, body { margin: 0; height: 100%; background: #2B0A12; }
+    #loader {
+      position: fixed; inset: 0; display: flex; align-items: center; justify-content: center;
+      transition: opacity .4s ease;
+    }
+    #loader span {
+      width: 14px; height: 14px; margin: 0 6px; border-radius: 50%;
+      background: #F3D774; animation: pulse 1s ease-in-out infinite;
+    }
+    #loader span:nth-child(2) { animation-delay: .15s; }
+    #loader span:nth-child(3) { animation-delay: .3s; }
+    @keyframes pulse { 0%, 100% { opacity: .2; transform: scale(.7); } 50% { opacity: 1; transform: scale(1); } }
+  </style>
+</head>
+<body>
+  <div id="loader"><span></span><span></span><span></span></div>
+  <script>
+    // Quita el cargador cuando Flutter pinta el primer frame.
+    window.addEventListener('flutter-first-frame', function () {
+      var l = document.getElementById('loader');
+      if (l) { l.style.opacity = '0'; setTimeout(function () { l.remove(); }, 400); }
+    });
+  </script>
+  <script src="flutter_bootstrap.js" async></script>
+</body>
+</html>

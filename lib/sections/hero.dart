@@ -6,6 +6,7 @@ import '../app_state.dart';
 import '../content.dart';
 import '../i18n.dart';
 import '../theme.dart';
+import '../widgets/aura_background.dart';
 import '../widgets/common.dart';
 import '../widgets/nav_bar.dart';
 
@@ -37,14 +38,9 @@ class HeroSection extends StatelessWidget {
 
     return ConstrainedBox(
       constraints: BoxConstraints(minHeight: math.max(560, size.height - NavBar.height)),
-      child: Stack(
-        children: [
-          Positioned.fill(
-            child: CustomPaint(
-              painter: mode.isDark ? _DotGridPainter(p.line) : _ShapesPainter(p.accent, p.line),
-            ),
-          ),
-          ContentWidth(
+      child: AuraBackground(
+        dark: mode.isDark,
+        child: ContentWidth(
             child: Padding(
               padding: EdgeInsets.symmetric(vertical: mobile ? 64 : 96),
               child: Column(
@@ -113,8 +109,7 @@ class HeroSection extends StatelessWidget {
                 ],
               ),
             ),
-          ),
-        ],
+        ),
       ),
     );
   }
@@ -183,71 +178,4 @@ class _BlinkingCursorState extends State<_BlinkingCursor> with SingleTickerProvi
       ),
     );
   }
-}
-
-/// Fondo de la cara "código": cuadrícula de puntos que se desvanece.
-class _DotGridPainter extends CustomPainter {
-  _DotGridPainter(this.color);
-  final Color color;
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    const gap = 28.0;
-    final paint = Paint();
-    for (double x = gap / 2; x < size.width; x += gap) {
-      for (double y = gap / 2; y < size.height; y += gap) {
-        // Más visible a la derecha, se desvanece hacia la izquierda.
-        final t = (x / size.width).clamp(0.0, 1.0);
-        paint.color = color.withValues(alpha: 0.15 + 0.6 * t * t);
-        canvas.drawCircle(Offset(x, y), 1.4, paint);
-      }
-    }
-  }
-
-  @override
-  bool shouldRepaint(_DotGridPainter old) => old.color != color;
-}
-
-/// Fondo de la cara "diseño": formas geométricas grandes.
-class _ShapesPainter extends CustomPainter {
-  _ShapesPainter(this.accent, this.line);
-  final Color accent;
-  final Color line;
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    final w = size.width;
-    final h = size.height;
-    final r = math.min(w, h);
-    // En pantallas estrechas las formas quedarían detrás del nombre:
-    // allí las hacemos muy suaves.
-    final strong = w >= 960;
-
-    // Círculo grande relleno, medio fuera de la pantalla.
-    canvas.drawCircle(
-      Offset(w * 0.92, h * 0.28),
-      r * 0.32,
-      Paint()..color = accent.withValues(alpha: strong ? 0.9 : 0.12),
-    );
-    // Anillo.
-    canvas.drawCircle(
-      Offset(w * 0.78, h * 0.72),
-      r * 0.2,
-      Paint()
-        ..style = PaintingStyle.stroke
-        ..strokeWidth = 2
-        ..color = accent.withValues(alpha: strong ? 1 : 0.3),
-    );
-    // Semicírculo suave.
-    canvas.drawArc(
-      Rect.fromCircle(center: Offset(w * 0.62, h), radius: r * 0.26),
-      math.pi,
-      math.pi,
-      true,
-      Paint()..color = line,
-    );
-  }
-
-  @override
-  bool shouldRepaint(_ShapesPainter old) => old.accent != accent || old.line != line;
 }

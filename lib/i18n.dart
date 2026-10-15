@@ -79,6 +79,8 @@ class S {
     'Якщо маєш проєкт, пропозицію або просто хочеш привітатися — пиши.',
   );
 
+  static const downloadCv = Tr('Descargar CV', 'Download CV', 'Скачать CV', 'Завантажити CV');
+
   // Footer
   static const madeWith = Tr('Hecho con Flutter', 'Made with Flutter', 'Сделано на Flutter', 'Зроблено на Flutter');
 }

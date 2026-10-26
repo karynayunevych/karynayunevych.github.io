@@ -372,11 +372,31 @@ class ContactBlock extends StatelessWidget {
                 style: Fonts.body(context, size: mobile ? 16 : 18, color: p.onAccent),
               ),
             ),
+            const SizedBox(height: 14),
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(Icons.place_outlined, size: 18, color: p.onAccent),
+                const SizedBox(width: 8),
+                Flexible(
+                  child: Text(
+                    context.tr(Profile.location),
+                    style: Fonts.body(context, size: mobile ? 14 : 15, weight: FontWeight.w500, color: p.onAccent),
+                  ),
+                ),
+              ],
+            ),
             const SizedBox(height: 32),
             Wrap(
               spacing: 12,
               runSpacing: 12,
               children: [
+                if (Profile.cvUrl.isNotEmpty)
+                  _ContactButton(
+                    icon: Icons.download_outlined,
+                    label: context.tr(S.downloadCv),
+                    url: Profile.cvUrl,
+                  ),
                 if (Profile.email.isNotEmpty)
                   _ContactButton(
                     icon: Icons.mail_outline,

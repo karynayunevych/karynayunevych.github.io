@@ -17,10 +17,21 @@ class Profile {
   static const githubUrl = 'https://github.com/$githubUser';
 
   /// Déjalo vacío ('') para ocultar el botón.
-  static const email = '';
-  static const linkedinUrl = '';
-  static const behanceUrl = ''; // útil para la parte de diseño
-  static const instagramUrl = '';
+  static const email = 'karynayunevych@gmail.com';
+  static const linkedinUrl = 'https://www.linkedin.com/in/karynayunevych';
+  static const behanceUrl = 'https://www.behance.net/karynayunevych1'; // útil para la parte de diseño
+  static const instagramUrl = 'https://www.instagram.com/yunevych_karyna/';
+
+  /// CV en PDF (el archivo está en web/). Déjalo vacío ('') para ocultar el botón.
+  static const cvUrl = 'https://karynayunevych.github.io/CV_Karyna_Yunevych_ES.pdf';
+
+  /// Ciudad y disponibilidad (se muestra en Contacto).
+  static const location = Tr(
+    'Valladolid, España · abierta a remoto',
+    'Valladolid, Spain · open to remote',
+    'Вальядолид, Испания · открыта к удалёнке',
+    'Вальядолід, Іспанія · відкрита до віддаленої роботи',
+  );
 
   /// Idiomas que hablas (se muestran en ambas caras).
   static const spokenLanguages = [
@@ -134,15 +145,27 @@ const devContent = ModeContent(
   ),
   experience: [
     TimelineItem(
-      title: Tr('Programadora', 'Developer', 'Разработчица', 'Розробниця'),
+      title: Tr('Desarrolladora web', 'Web developer', 'Веб-разработчица', 'Веб-розробниця'),
       org: 'PLANFORM',
-      place: Tr('España', 'Spain', 'Испания', 'Іспанія'),
-      period: Tr('Actualidad', 'Present', 'Сейчас', 'Зараз'), // ✏️ p. ej. Tr('2025 — hoy', '2025 — now', ...)
+      place: Tr('Valladolid · híbrido', 'Valladolid · hybrid', 'Вальядолид · гибрид', 'Вальядолід · гібрид'),
+      period: Tr('Nov 2025 — hoy', 'Nov 2025 — now', 'Ноя 2025 — сейчас', 'Лис 2025 — зараз'),
       description: Tr(
-        'Desarrollo de software en el equipo de PLANFORM.',
-        'Software development in the PLANFORM team.',
-        'Разработка ПО в команде PLANFORM.',
-        'Розробка ПЗ у команді PLANFORM.',
+        'Desarrollo la nueva web de la empresa, del front-end (HTML, CSS, JavaScript) al servidor (PHP), conectada con su CRM.',
+        "I build the company's new website, from the front-end (HTML, CSS, JavaScript) to the server (PHP), connected to its CRM.",
+        'Разрабатываю новый сайт компании — от фронтенда (HTML, CSS, JavaScript) до сервера (PHP), с интеграцией с CRM.',
+        'Розробляю новий сайт компанії — від фронтенду (HTML, CSS, JavaScript) до сервера (PHP), з інтеграцією з CRM.',
+      ),
+    ),
+    TimelineItem(
+      title: Tr('Desarrolladora web (prácticas)', 'Web developer (internship)', 'Веб-разработчица (практика)', 'Веб-розробниця (практика)'),
+      org: 'PLANFORM',
+      place: Tr('Valladolid', 'Valladolid', 'Вальядолид', 'Вальядолід'),
+      period: Tr('Mar — jun 2025', 'Mar — Jun 2025', 'Мар — июн 2025', 'Бер — чер 2025'),
+      description: Tr(
+        'Prácticas del CFGS DAM: empecé la nueva web de la empresa y después me incorporaron al equipo.',
+        'DAM vocational internship: I started the new company website and was then hired to the team.',
+        'Практика по DAM: начала новый сайт компании, после чего меня взяли в команду.',
+        'Практика з DAM: почала новий сайт компанії, після чого мене взяли в команду.',
       ),
     ),
   ],
@@ -156,7 +179,18 @@ const devContent = ModeContent(
       ),
       org: 'Universidad de Burgos (UBU)',
       place: Tr('Burgos', 'Burgos', 'Бургос', 'Бургос'),
-      period: Tr('En curso', 'In progress', 'В процессе', 'Триває'),
+      period: Tr('2026 — 2030', '2026 — 2030', '2026 — 2030', '2026 — 2030'),
+    ),
+    TimelineItem(
+      title: Tr(
+        'CFGS Desarrollo de Aplicaciones Multiplataforma (DAM)',
+        'Higher VET Diploma in Multiplatform App Development (DAM)',
+        'Высшее проф. образование: разработка мультиплатформенных приложений (DAM)',
+        'Вища проф. освіта: розробка мультиплатформних застосунків (DAM)',
+      ),
+      org: 'CIFP Juan de Herrera',
+      place: Tr('Valladolid', 'Valladolid', 'Вальядолид', 'Вальядолід'),
+      period: Tr('2023 — 2025', '2023 — 2025', '2023 — 2025', '2023 — 2025'),
     ),
   ],
   // ✏️ Pon aquí tus tecnologías reales
@@ -247,8 +281,8 @@ const designContent = ModeContent(
     TimelineItem(
       title: Tr('Diseño Gráfico', 'Graphic Design', 'Графический дизайн', 'Графічний дизайн'),
       org: 'Universitat Oberta de Catalunya (UOC)',
-      place: Tr('Barcelona', 'Barcelona', 'Барселона', 'Барселона'),
-      period: Tr('En curso', 'In progress', 'В процессе', 'Триває'),
+      place: Tr('Online', 'Online', 'Онлайн', 'Онлайн'),
+      period: Tr('2026 — 2030', '2026 — 2030', '2026 — 2030', '2026 — 2030'),
     ),
   ],
   // ✏️ Pon aquí tus habilidades y programas reales

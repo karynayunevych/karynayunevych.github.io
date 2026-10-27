@@ -6,7 +6,6 @@ import '../app_state.dart';
 import '../content.dart';
 import '../i18n.dart';
 import '../theme.dart';
-import '../widgets/aura_background.dart';
 import '../widgets/common.dart';
 import '../widgets/nav_bar.dart';
 
@@ -38,8 +37,9 @@ class HeroSection extends StatelessWidget {
 
     return ConstrainedBox(
       constraints: BoxConstraints(minHeight: math.max(560, size.height - NavBar.height)),
-      child: AuraBackground(
-        dark: mode.isDark,
+      // Fondo liso con el color del tema (burdeos en la cara oscura).
+      child: ColoredBox(
+        color: p.bg,
         child: ContentWidth(
             child: Padding(
               padding: EdgeInsets.symmetric(vertical: mobile ? 64 : 96),

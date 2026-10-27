@@ -23,7 +23,7 @@ class Profile {
   static const instagramUrl = 'https://www.instagram.com/yunevych_karyna/';
 
   /// CV en PDF (el archivo está en web/). Déjalo vacío ('') para ocultar el botón.
-  static const cvUrl = 'https://karynayunevych.github.io/CV_Karyna_Yunevych_ES.pdf';
+  static const cvUrl = 'https://karynayunevych.github.io/CV_Karyna_Yunevych_ES_1.pdf';
 
   /// Ciudad y disponibilidad (se muestra en Contacto).
   static const location = Tr(
